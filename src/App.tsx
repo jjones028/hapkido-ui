@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import {Button, Card, CardBody} from "@nextui-org/react";
+import {Button, Card, CardBody, Navbar} from "@nextui-org/react";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,8 +16,9 @@ function App() {
 
   return (
     <>
-        <div className="grid grid-cols-3 grid-rows-3 gap-4">
-            <div className="p-4 bg-teal-500 shadow-lg rounded-lg">1</div>
+        <Navbar className="bg-blue-500"></Navbar>
+        <div className="grid grid-cols-3 grid-rows-3 gap-3">
+            <div className="p-4 bg-teal-500 shadow-lg rounded-lg hover:bg-teal-900">1</div>
             <div className="p-4 bg-teal-500 shadow-lg rounded-lg">2</div>
             <div className="p-4 bg-teal-500 shadow-lg rounded-lg">3</div>
             <div className="p-4 bg-teal-500 shadow-lg rounded-lg">4</div>
