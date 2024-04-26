@@ -6,7 +6,14 @@ export default {
         "./src/**/*.{html,js,jsx,ts,tsx}",
         "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'primary': '#DEDAD7',
+                'secondary': '#DEDAD7',
+                'accent': '#B4BFC5',
+                'background': '#575C5F',
+            }
+        },
     },
     darkMode: "class",
     plugins: [nextui({
