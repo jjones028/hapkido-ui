@@ -1,22 +1,15 @@
 import './App.css'
-import {Button, Card, CardBody, CardHeader, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
-import {Logo} from "./Logo.tsx";
-import axios from "axios";
-import {useEffect, useState} from "react";
+import axios from "axios"
+import {useEffect, useState} from "react"
+import AppBar from "./components/AppBar.tsx"
+import SubjectNameCard from "./components/SubjectNameCard.tsx"
+import {SubjectName} from "./interfaces/SubjectName.ts"
 
-interface SubjectNames{
-    id: number,
-    commonName: string,
-    organization: string,
-    countryCode: string,
-    stateOrProvince: string,
-    locality: string,
-    organizationalUnit: string,
-    emailAddress: string
-}
+
 
 function App() {
-    const [elements, setElements] = useState<SubjectNames[]>([])
+    const [elements, setElements] = useState<SubjectName[]>([])
+
     useEffect(() => {
         const getElements = async () => {
             const response = await axios.get('/api/subjectnames');
@@ -27,32 +20,11 @@ function App() {
 
     return (
         <>
-            <Navbar maxWidth="full">
-                <NavbarBrand>
-                    <Logo/>
-                    <p className="text-secondary">Hapkido</p>
-                </NavbarBrand>
-                <NavbarContent/>
-            </Navbar>
+            <AppBar />
             <div className="grid grid-cols-3 grid-rows-3 gap-3">
-                {elements.map((i) => (
-                    <Card className="p-4 bg-accent text-background shadow-lg rounded-lg hover:bg-primary"
-                          key={i.id}
-                          isPressable={true}>
-                        <CardHeader>{i.organization}</CardHeader>
-                        <CardBody>
-                            <p>
-                                Common Name: {i.commonName}<br/>
-                                Organizational Unit: {i.organizationalUnit}<br/>
-                                Location: {i.locality}, {i.stateOrProvince} {i.countryCode}<br/>
-                                Email: {i.emailAddress}<br/>
-                            </p>
-                        </CardBody>
-                    </Card>
-                ))}
-            </div>
-            <div className="flex w-full gap-3 p-3 justify-end">
-                <Button className="bg-primary text-background">Add CA</Button>
+                { elements.map((subjectName) => (
+                    <SubjectNameCard key={subjectName.id} subjectName={subjectName} />
+                )) }
             </div>
         </>
     );
