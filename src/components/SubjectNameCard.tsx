@@ -2,6 +2,7 @@ import {Card, CardBody, CardHeader} from "@nextui-org/react";
 import {SubjectName} from "../interfaces/SubjectName.ts";
 
 interface Props {
+    onClick: ()=>void;
     subjectName: SubjectName;
 }
 
@@ -9,7 +10,9 @@ function SubjectNameCard(props: Props) {
     return (
         <Card className="m-4 p-4 bg-primary text-background shadow-lg rounded-lg hover:bg-accent"
               key={props.subjectName.id}
-              isPressable={true}>
+              isPressable={true}
+              onClick={props.onClick}
+        >
             <CardHeader className="font-bold">{props.subjectName.organization}</CardHeader>
             <CardBody>
                 <p>
