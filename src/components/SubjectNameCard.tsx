@@ -2,7 +2,7 @@ import {Card, CardBody, CardHeader} from "@nextui-org/react";
 import {SubjectName} from "../interfaces/SubjectName.ts";
 
 interface Props {
-    onClick: ()=>void;
+    onClick: () => void;
     subjectName: SubjectName;
 }
 
