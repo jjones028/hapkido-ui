@@ -1,6 +1,7 @@
 import {Button, Navbar, NavbarBrand, NavbarContent} from "@nextui-org/react";
 import {Logo} from "./Logo.tsx";
 
+
 function AppBar() {
     return (
         <Navbar maxWidth="full">
@@ -10,7 +11,8 @@ function AppBar() {
             </NavbarBrand>
             <div className="justify-end">
                 <NavbarContent>
-                    <Button className="bg-primary text-background content-end justify-end">Add CA</Button>
+                    <Button className="bg-primary text-background content-end">Login</Button>
+                    <Button className="bg-primary text-background content-end">Add CA</Button>
                 </NavbarContent>
             </div>
         </Navbar>
