@@ -1,21 +1,21 @@
 import {SubjectName} from "../interfaces/SubjectName.ts";
 import {Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
+import React from "react";
 
 interface Props {
     subjectName: SubjectName | undefined,
     isOpen: boolean,
     handleOnClose: () => void,
     handleOnSave: () => void,
+    handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
-
-
-export const SubjectNameModal = ({ subjectName, isOpen, handleOnSave, handleOnClose }: Props) => {
+export const SubjectNameModal = ({ subjectName, isOpen, handleOnSave, handleOnClose, handleOnChange }: Props) => {
     return (
         <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalContent>
             <ModalHeader>Edit Subject Name</ModalHeader>
             <ModalBody>
-                <Input type="text" label="Common Name" placeholder="Enter the common name" value={subjectName?.commonName} />
+                <Input type="text" label="Common Name" placeholder="Enter the common name" value={subjectName?.commonName} onChange={handleOnChange} />
                 <Input type="text" label="Organization" placeholder="Enter the organization" value={subjectName?.organization} />
                 <Input type="text" label="Organizational Unit" placeholder="Enter the organizational unit" value={subjectName?.organizationalUnit} />
                 <Input type="text" label="Country Code" placeholder="Enter the country code" value={subjectName?.countryCode} />

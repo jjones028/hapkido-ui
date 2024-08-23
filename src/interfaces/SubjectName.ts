@@ -1,5 +1,5 @@
 export interface SubjectName {
-    id: number,
+    id: number | null | undefined,
     commonName: string,
     organization: string,
     countryCode: string,
