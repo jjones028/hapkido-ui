@@ -1,5 +1,5 @@
 import './App.css'
-import {useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import AppBar from "./components/AppBar.tsx"
 import SubjectNameCard from "./components/SubjectNameCard.tsx"
 import {SubjectName} from "./interfaces/SubjectName.ts"
@@ -40,8 +40,36 @@ function App() {
     }, [account, instance])
 
     function handleOnSave() {
-        setCurrentSubjectName(currentSubjectName)
+        setCurrentSubjectName(undefined)
         setEditDialogIsOpen(false)
+    }
+
+    function onAddButtonClick() {
+        setCurrentSubjectName({
+            id: null,
+            commonName: "",
+            organization: "",
+            countryCode: "",
+            stateOrProvince: "",
+            locality: "",
+            organizationalUnit:"",
+            emailAddress: ""
+        })
+        setEditDialogIsOpen(true)
+    }
+
+    function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value
+        setCurrentSubjectName({...currentSubjectName,
+            commonName: "",
+            countryCode: "",
+            emailAddress: "",
+            id: undefined,
+            locality: "",
+            organization: "",
+            organizationalUnit: "",
+            stateOrProvince: "",
+            [e.target.name]: value})
     }
 
     return (
@@ -49,9 +77,11 @@ function App() {
             <SubjectNameModal subjectName={currentSubjectName}
                               isOpen={editDialogIsOpen}
                               handleOnClose={() => setEditDialogIsOpen(false)}
-                              handleOnSave={handleOnSave}>
+                              handleOnSave={handleOnSave}
+                              handleOnChange={handleOnChange}
+            >
             </SubjectNameModal>
-            <AppBar />
+            <AppBar onAddButtonClick={onAddButtonClick}/>
             <div className="grid grid-cols-3 grid-rows-3 gap-3">
                 { elements.map((subjectName) => (
                     <SubjectNameCard key={subjectName.id} subjectName={subjectName} onClick={() => {
